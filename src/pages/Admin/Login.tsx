@@ -45,7 +45,11 @@ export default function AdminLoginPage() {
         <div className="bg-secondary/80 backdrop-blur border border-white/10 p-10">
           {/* Logo */}
           <div className="flex items-center gap-3 mb-8">
-            <div className="w-12 h-12 bg-accent flex items-center justify-center font-display font-bold text-white text-2xl">R</div>
+            <img
+              src="/build_max.jpeg"
+              alt="Builders Max Construction Ltd"
+              className="w-12 h-12 object-contain rounded-md bg-white p-1 shadow-lg shadow-black/20"
+            />
             <div>
               <p className="font-display font-bold text-white text-lg">REAL Admin</p>
               <p className="text-white/40 text-xs">Construction Management Portal</p>
@@ -87,7 +91,7 @@ export default function AdminLoginPage() {
             {error && <p className="text-red-400 text-sm bg-red-900/20 px-4 py-3">{error}</p>}
 
             <button type="submit" disabled={isLoading}
-              className="w-full bg-accent hover:bg-orange-600 text-white font-semibold py-3 transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
+              className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-3 transition-colors disabled:opacity-60 flex items-center justify-center gap-2">
               {isLoading ? (
                 <><svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg> Signing in…</>
               ) : 'Sign In to Dashboard'}

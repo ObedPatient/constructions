@@ -10,9 +10,9 @@ interface BadgeProps {
 
 const variants: Record<BadgeVariant, string> = {
   accent: 'bg-accent text-white',
-  success: 'bg-green-500 text-white',
-  warning: 'bg-orange-500 text-white',
-  info: 'bg-blue-500 text-white',
+  success: 'bg-accent text-white',
+  warning: 'bg-secondary text-white',
+  info: 'bg-accent/90 text-white',
   neutral: 'bg-gray-200 dark:bg-white/10 text-gray-700 dark:text-white/70',
   danger: 'bg-red-500 text-white',
 };

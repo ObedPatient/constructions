@@ -289,13 +289,13 @@ export default function ProjectFormModal({ open, onClose, project }: Props) {
         </div>
 
         <div className="flex items-center gap-2">
-          <input type="checkbox" id="featured" {...register('featured')} className="w-4 h-4 accent-orange-500" />
+          <input type="checkbox" id="featured" {...register('featured')} className="w-4 h-4 accent-accent" />
           <label htmlFor="featured" className="text-sm text-gray-700 dark:text-gray-300">Feature this project on homepage</label>
         </div>
 
         <div className="flex gap-3 pt-2">
           <button type="submit" disabled={isSubmitting}
-            className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-60">
+            className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-6 py-2.5 text-sm font-medium transition-colors disabled:opacity-60">
             <Save size={15} /> {project ? 'Save Changes' : 'Add Project'}
           </button>
           <button type="button" onClick={onClose}

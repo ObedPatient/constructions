@@ -110,7 +110,7 @@ export default function AdminServices() {
             <input type="number" value={form.sortOrder} onChange={(e) => setForm({ ...form, sortOrder: Number(e.target.value) })} placeholder="Sort order" className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-sm dark:text-white focus:outline-none focus:border-accent" />
             {error && <p className="text-red-500 text-xs">{error}</p>}
             <div className="flex gap-3">
-              <button type="button" onClick={submit} className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-4 py-2.5 text-sm font-medium transition-colors">
+              <button type="button" onClick={submit} className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors">
                 {editing ? <Save size={15} /> : <Plus size={15} />} {editing ? 'Save Service' : 'Add Service'}
               </button>
               {editing && <button type="button" onClick={resetForm} className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-gray-700 dark:text-white px-4 py-2.5 text-sm font-medium transition-colors"><X size={15} /> Cancel</button>}

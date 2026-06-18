@@ -106,8 +106,8 @@ export default function ContactPage() {
             <motion.div className="lg:col-span-3" initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               {isSubmitted ? (
                 <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-20 text-center gap-4 bg-green-50 dark:bg-green-900/20 h-full">
-                  <CheckCircle2 size={56} className="text-green-500" />
+                  className="flex flex-col items-center justify-center py-20 text-center gap-4 bg-accent/10 dark:bg-white/10 h-full">
+                  <CheckCircle2 size={56} className="text-accent" />
                   <h3 className="font-display text-2xl font-bold text-primary dark:text-white">Message Sent!</h3>
                   <p className="text-gray-500 dark:text-white/60 max-w-sm">
                     Thank you for reaching out. Our team will respond within 24 business hours.
@@ -227,8 +227,8 @@ export default function ContactPage() {
                         <span className="text-primary dark:text-white font-medium">8:00 AM - 6:00 PM</span>
                       </div>
                       <div className="border-t border-gray-100 dark:border-white/10 pt-2 mt-1">
-                        <span className="text-green-500 flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-accent flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                           Project inquiries answered within 24 hours
                         </span>
                       </div>

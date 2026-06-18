@@ -17,6 +17,7 @@ const ADMIN_NAV = [
   { href: '/admin/milestones', label: 'Milestones', icon: Milestone },
   { href: '/admin/team', label: 'Leadership Team', icon: Users },
   { href: '/admin/partners', label: 'Partners', icon: Handshake },
+  { href: '/admin/hero-slides', label: 'Hero Slides', icon: ChevronRight },
   { href: '/admin/messages', label: 'Messages', icon: MessageSquare },
   { href: '/admin/company', label: 'Company Profile', icon: Building2 },
 ];
@@ -39,14 +40,18 @@ export default function AdminLayout() {
     href === '/admin' ? location.pathname === '/admin' : location.pathname.startsWith(href + '/') || location.pathname === href;
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="flex h-screen bg-white dark:bg-gray-900">
       {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-primary flex flex-col transition-all duration-300 shrink-0`}>
+      <aside className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-[linear-gradient(180deg,#111111_0%,#15181c_100%)] flex flex-col transition-all duration-300 shrink-0 border-r border-white/10`}>
         <div className="flex items-center gap-3 px-4 py-5 border-b border-white/10">
-          <div className="w-9 h-9 bg-accent flex items-center justify-center font-bold text-white shrink-0">R</div>
+          <img
+            src="/build_max.jpeg"
+            alt="Builders Max Construction Ltd"
+            className="w-9 h-9 object-contain rounded-md bg-white p-0.5 shrink-0 shadow-lg shadow-black/20"
+          />
           {sidebarOpen && (
             <div className="overflow-hidden">
-              <p className="text-white font-semibold text-sm truncate">REAL Admin</p>
+              <p className="text-white font-semibold text-sm truncate">Builders Max Admin</p>
               <p className="text-white/40 text-xs truncate">{user.email}</p>
             </div>
           )}
@@ -61,8 +66,8 @@ export default function AdminLayout() {
                 key={item.href}
                 to={item.href}
                 className={`flex items-center gap-3 px-3 py-3 mb-1 transition-all duration-200 group relative ${
-                  active
-                    ? 'bg-accent text-white'
+                active
+                    ? 'bg-accent text-white shadow-lg shadow-accent/20'
                     : 'text-white/60 hover:text-white hover:bg-white/10'
                 }`}
                 title={!sidebarOpen ? item.label : ''}
@@ -85,8 +90,8 @@ export default function AdminLayout() {
         <div className="px-2 pb-4 border-t border-white/10 pt-4">
           <Link
             to="/"
-            className="flex items-center gap-3 px-3 py-3 text-white/60 hover:text-white hover:bg-white/10 transition-all mb-1"
-          >
+          className="flex items-center gap-3 px-3 py-3 text-white/60 hover:text-white hover:bg-white/10 transition-all mb-1"
+        >
             <ChevronRight size={18} className="shrink-0 rotate-180" />
             {sidebarOpen && <span className="text-sm">Back to Site</span>}
           </Link>
@@ -103,7 +108,7 @@ export default function AdminLayout() {
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top bar */}
-        <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
+        <header className="bg-white/90 backdrop-blur border-b border-gray-200/80 dark:bg-gray-800 dark:border-gray-700 px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -130,7 +135,7 @@ export default function AdminLayout() {
               )}
             </button>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white text-sm font-bold">
+              <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center text-white text-sm font-bold shadow-md shadow-accent/20">
                 {user.name[0]}
               </div>
               <div className="hidden sm:block">

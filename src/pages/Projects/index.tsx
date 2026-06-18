@@ -106,8 +106,8 @@ export default function ProjectsPage() {
                     </div>
                     <div className="absolute top-3 right-3">
                       <span className={`text-white text-xs px-2.5 py-1 uppercase tracking-wide font-medium ${
-                        project.status === 'completed' ? 'bg-green-500' :
-                        project.status === 'ongoing' ? 'bg-blue-500' : 'bg-orange-500'
+                        project.status === 'completed' ? 'bg-secondary' :
+                        project.status === 'ongoing' ? 'bg-accent' : 'bg-primary'
                       }`}>
                         {project.status}
                       </span>

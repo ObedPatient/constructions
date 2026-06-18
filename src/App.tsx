@@ -6,7 +6,7 @@ import type { AppDispatch, RootState } from './redux/store';
 import { fetchCompanyProfile } from './redux/slices/companySlice';
 import { fetchProjects } from './redux/slices/projectSlice';
 import { fetchProjectCategories } from './redux/slices/projectCategorySlice';
-import { fetchMilestones, fetchPartners, fetchServices, fetchTeam } from './redux/slices/contentSlice';
+import { fetchHeroSlides, fetchMilestones, fetchPartners, fetchServices, fetchTeam } from './redux/slices/contentSlice';
 import { fetchCurrentAdmin } from './redux/slices/authSlice';
 
 import MainLayout from './layout/MainLayout';
@@ -34,13 +34,18 @@ const AdminTeam = lazy(() => import('./pages/Admin/Team'));
 const AdminPartners = lazy(() => import('./pages/Admin/Partners'));
 const AdminMessages = lazy(() => import('./pages/Admin/Messages'));
 const AdminCompany = lazy(() => import('./pages/Admin/Company'));
+const AdminHeroSlides = lazy(() => import('./pages/Admin/HeroSlides'));
 
 function PageLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white dark:bg-primary">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-10 h-10 bg-accent flex items-center justify-center font-display font-bold text-white">R</div>
-        <div className="w-32 h-0.5 bg-gray-100 dark:bg-white/10 overflow-hidden">
+        <img
+          src="/build_max.jpeg"
+          alt="Builders Max Construction Ltd"
+          className="w-12 h-12 object-contain rounded-md bg-white p-1 shadow-lg shadow-black/10"
+        />
+        <div className="w-32 h-0.5 bg-gray-200 dark:bg-white/10 overflow-hidden">
           <div className="h-full bg-accent animate-[loadingBar_1s_ease-in-out_infinite]" style={{ animation: 'loadingBar 1s ease-in-out infinite' }} />
         </div>
       </div>
@@ -60,6 +65,7 @@ function BootstrapData() {
     dispatch(fetchMilestones());
     dispatch(fetchTeam());
     dispatch(fetchPartners());
+    dispatch(fetchHeroSlides());
     if (token) dispatch(fetchCurrentAdmin());
   }, [dispatch, token]);
 
@@ -96,6 +102,7 @@ function App() {
               <Route path="partners" element={<AdminPartners />} />
               <Route path="messages" element={<AdminMessages />} />
               <Route path="company" element={<AdminCompany />} />
+              <Route path="hero-slides" element={<AdminHeroSlides />} />
             </Route>
 
             {/* 404 */}

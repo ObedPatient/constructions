@@ -1,5 +1,5 @@
 import api from './api';
-import type { Milestone, Partner, Service, TeamMember } from '../types';
+import type { HeroSlide, Milestone, Partner, Service, TeamMember } from '../types';
 
 const multipart = { headers: { 'Content-Type': 'multipart/form-data' } };
 
@@ -35,4 +35,11 @@ export const partnerService = {
   update: (id: string, data: Partial<Omit<Partner, 'id'>> | FormData) =>
     api.put<Partner>(`/partners/${id}`, data, data instanceof FormData ? multipart : undefined),
   delete: (id: string) => api.delete(`/partners/${id}`),
+};
+
+export const heroSlideService = {
+  getAll: () => api.get<HeroSlide[]>('/hero-slides'),
+  create: (data: Omit<HeroSlide, 'id'>) => api.post<HeroSlide>('/hero-slides', data),
+  update: (id: string, data: Partial<Omit<HeroSlide, 'id'>>) => api.put<HeroSlide>(`/hero-slides/${id}`, data),
+  delete: (id: string) => api.delete(`/hero-slides/${id}`),
 };

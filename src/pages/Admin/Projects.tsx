@@ -95,9 +95,9 @@ export default function AdminProjects() {
       accessorKey: 'status',
       cell: ({ row }) => (
         <span className={`text-xs px-2.5 py-1 font-medium capitalize ${
-          row.original.status === 'completed' ? 'bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400' :
+          row.original.status === 'completed' ? 'bg-secondary text-primary dark:bg-white/10 dark:text-white' :
           row.original.status === 'ongoing' ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400' :
-          'bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+          'bg-primary/5 text-primary dark:bg-white/10 dark:text-white/80'
         }`}>{row.original.status}</span>
       ),
     },
@@ -118,7 +118,7 @@ export default function AdminProjects() {
           <div className="flex items-center gap-2">
             <button
               onClick={() => openDetails(project)}
-              className="p-1.5 text-gray-400 hover:text-accent hover:bg-orange-50 dark:hover:bg-orange-900/20 transition-colors"
+              className="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors"
               aria-label={`View ${project.title}`}
               title="View details"
             >
@@ -144,7 +144,7 @@ export default function AdminProjects() {
           <p className="text-gray-500 text-sm mt-1">{projects.length} total projects</p>
         </div>
         <button onClick={openAdd}
-          className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-4 py-2.5 text-sm font-medium transition-colors">
+          className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors">
           <Plus size={16} /> Add Project
         </button>
       </div>
@@ -200,9 +200,9 @@ export default function AdminProjects() {
                 <div>
                   <span className="bg-accent/10 text-accent text-xs px-2.5 py-1 capitalize">{detailProject.category}</span>
                   <span className={`ml-2 text-xs px-2.5 py-1 font-medium capitalize ${
-                    detailProject.status === 'completed' ? 'bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400' :
+                    detailProject.status === 'completed' ? 'bg-secondary text-primary dark:bg-white/10 dark:text-white' :
                     detailProject.status === 'ongoing' ? 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400' :
-                    'bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400'
+                    'bg-primary/5 text-primary dark:bg-white/10 dark:text-white/80'
                   }`}>{detailProject.status}</span>
                 </div>
 
@@ -254,7 +254,7 @@ export default function AdminProjects() {
                   closeDetails();
                   openEdit(detailProject);
                 }}
-                className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-4 py-2.5 text-sm font-medium transition-colors"
+                className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors"
               >
                 <Pencil size={15} /> Edit Project
               </button>

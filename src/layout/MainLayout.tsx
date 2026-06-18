@@ -41,7 +41,7 @@ export default function MainLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col dark:bg-primary">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-primary">
       <Header />
       <AnimatePresence mode="wait">
         <motion.main
@@ -50,7 +50,6 @@ export default function MainLayout() {
           animate="in"
           exit="out"
           variants={pageVariants}
-          
           className="flex-1"
         >
           <Outlet />

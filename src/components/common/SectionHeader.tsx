@@ -39,6 +39,13 @@ export default function SectionHeader({ label, title, subtitle, center = false, 
           {subtitle}
         </motion.p>
       )}
+      <motion.div
+        initial={{ width: 0, opacity: 0 }}
+        whileInView={{ width: center ? '4rem' : '3rem', opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.15 }}
+        className={`mt-5 h-0.5 bg-gradient-to-r from-accent via-secondary to-transparent ${center ? 'mx-auto' : ''}`}
+      />
     </div>
   );
 }

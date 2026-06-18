@@ -17,18 +17,20 @@ export default function Footer() {
   const profile = useSelector((state: RootState) => state.company.profile);
 
   return (
-    <footer className="bg-primary text-white">
+    <footer className="bg-[linear-gradient(180deg,#111111_0%,#0b0b0b_100%)] text-white border-t border-white/10">
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-accent flex items-center justify-center font-display font-bold text-white text-xl">
-                R
-              </div>
+              <img
+                src="/build_max.jpeg"
+                alt="Builders Max Construction Ltd"
+                className="w-12 h-12 object-contain rounded-md bg-white p-1 shadow-lg shadow-black/20"
+              />
               <div>
-                <span className="font-display font-bold text-white text-xl">REAL</span>
+                <span className="font-display font-bold text-white text-xl">Builders Max</span>
                 <span className="block text-white/40 text-[9px] tracking-[0.3em] uppercase -mt-1">Construction</span>
               </div>
             </div>
@@ -43,7 +45,7 @@ export default function Footer() {
                     href={url as string}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-9 h-9 bg-white/10 hover:bg-accent flex items-center justify-center transition-all duration-300"
+                    className="w-9 h-9 bg-white/10 hover:bg-accent flex items-center justify-center transition-all duration-300 border border-white/5"
                     aria-label={platform}
                   >
                     {socialIcons[platform]}
@@ -120,7 +122,7 @@ export default function Footer() {
                   placeholder="Your email"
                   className="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/40 px-4 py-2.5 text-sm focus:outline-none focus:border-accent transition-colors"
                 />
-                <button className="bg-accent hover:bg-accent-600 px-4 py-2.5 transition-colors">
+                <button className="bg-accent hover:bg-secondary px-4 py-2.5 transition-colors">
                   <ArrowRight size={16} />
                 </button>
               </div>

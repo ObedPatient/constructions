@@ -51,7 +51,7 @@ export default function FeaturedProjects() {
                 {/* Status badge */}
                 <div className="absolute top-4 right-4">
                   <span className={`text-white text-xs px-3 py-1 uppercase tracking-wider font-semibold ${
-                    project.status === 'completed' ? 'bg-green-500' : project.status === 'ongoing' ? 'bg-blue-500' : 'bg-orange-500'
+                    project.status === 'completed' ? 'bg-secondary' : project.status === 'ongoing' ? 'bg-accent' : 'bg-primary'
                   }`}>
                     {project.status}
                   </span>

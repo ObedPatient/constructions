@@ -168,9 +168,9 @@ export default function ProjectDetailsPage() {
                 </div>
 
                 <div className={`mt-6 px-4 py-3 text-sm font-medium text-center ${
-                  selectedProject.status === 'completed' ? 'bg-green-50 text-green-700 dark:bg-green-900/30 dark:text-green-400' :
+                  selectedProject.status === 'completed' ? 'bg-secondary text-primary dark:bg-white/10 dark:text-white' :
                   selectedProject.status === 'ongoing' ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' :
-                  'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400'
+                  'bg-primary/5 text-primary dark:bg-white/10 dark:text-white/80'
                 }`}>
                   Status: <strong className="capitalize">{selectedProject.status}</strong>
                 </div>

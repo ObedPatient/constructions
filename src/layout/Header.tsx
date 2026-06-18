@@ -57,7 +57,7 @@ export default function Header() {
   return (
     <>
       {/* Scroll progress bar */}
-      <div className="fixed top-0 left-0 z-[100] h-0.5 bg-accent/30 w-full">
+      <div className="fixed top-0 left-0 z-[100] h-0.5 bg-accent/20 w-full">
         <motion.div
           className="h-full bg-accent"
           style={{ width: `${scrollProgress}%` }}
@@ -68,8 +68,8 @@ export default function Header() {
       <motion.header
         className={`fixed top-0.5 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'bg-primary/95 backdrop-blur-md shadow-2xl'
-            : 'bg-transparent'
+          ? 'bg-primary/95 backdrop-blur-md shadow-2xl border-b border-white/10'
+          : 'bg-transparent'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -99,12 +99,14 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-accent flex items-center justify-center font-display font-bold text-white text-xl">
-                R
-              </div>
+              <img
+                src="/build_max.jpeg"
+                alt="Builders Max Construction Ltd"
+                className="w-12 h-12 object-contain rounded-md bg-white p-1 shadow-lg shadow-black/10"
+              />
               <div>
                 <span className="font-display font-bold text-white text-xl tracking-tight">
-                  REAL
+                  Builders Max
                 </span>
                 <span className="block text-white/50 text-[9px] tracking-[0.3em] uppercase -mt-1">
                   Construction
@@ -125,7 +127,7 @@ export default function Header() {
                     to={item.href}
                     className={`flex items-center gap-1 px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                       isActive(item.href)
-                        ? 'text-accent'
+                      ? 'text-accent'
                         : 'text-white/80 hover:text-white'
                     }`}
                   >
@@ -203,7 +205,7 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-primary flex flex-col pt-24 px-6 pb-8 lg:hidden overflow-y-auto"
+            className="fixed inset-0 z-40 bg-[linear-gradient(180deg,#111111_0%,#171b20_100%)] flex flex-col pt-24 px-6 pb-8 lg:hidden overflow-y-auto"
           >
             <div className="flex flex-col gap-1">
               {navItems.map((item, i) => (

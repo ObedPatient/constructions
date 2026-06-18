@@ -122,7 +122,7 @@ export default function AdminMessages() {
                 </div>
                 <div className="px-6 py-4 border-t border-gray-100 dark:border-gray-700">
                   <a href={`mailto:${selectedMsg.email}?subject=Re: ${selectedMsg.subject}`}
-                    className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-4 py-2.5 text-sm font-medium transition-colors w-fit">
+                    className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors w-fit">
                     <Mail size={14} /> Reply via Email
                   </a>
                 </div>

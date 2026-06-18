@@ -1,0 +1,149 @@
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Pencil, Plus, Save, Search, Trash2, X } from 'lucide-react';
+import type { AppDispatch, RootState } from '../../redux/store';
+import type { HeroSlide } from '../../types';
+import { createHeroSlide, removeHeroSlide, saveHeroSlide } from '../../redux/slices/contentSlice';
+import Modal from '../../components/ui/Modal';
+import { notify } from '../../utils/toast';
+
+const emptyForm = {
+  image: '',
+  title: '',
+  subtitle: '',
+  sortOrder: 0,
+};
+
+export default function AdminHeroSlides() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { heroSlides } = useSelector((state: RootState) => state.content);
+  const [search, setSearch] = useState('');
+  const [editing, setEditing] = useState<HeroSlide | null>(null);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
+  const [form, setForm] = useState(emptyForm);
+  const [error, setError] = useState('');
+
+  const filtered = heroSlides.filter((slide) =>
+    slide.title.toLowerCase().includes(search.toLowerCase()) ||
+    slide.subtitle.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const resetForm = () => {
+    setEditing(null);
+    setForm(emptyForm);
+    setError('');
+  };
+
+  const startEdit = (slide: HeroSlide) => {
+    setEditing(slide);
+    setForm({
+      image: slide.image,
+      title: slide.title,
+      subtitle: slide.subtitle,
+      sortOrder: slide.sortOrder ?? 0,
+    });
+    setError('');
+  };
+
+  const submit = async () => {
+    if (!form.image.trim() || !form.title.trim() || !form.subtitle.trim()) {
+      setError('Image, title, and subtitle are required');
+      notify.warning('Image, title, and subtitle are required');
+      return;
+    }
+
+    const payload = {
+      image: form.image.trim(),
+      title: form.title.trim(),
+      subtitle: form.subtitle.trim(),
+      sortOrder: Number(form.sortOrder) || 0,
+    };
+
+    try {
+      if (editing) {
+        await dispatch(saveHeroSlide({ id: editing.id, data: payload })).unwrap();
+        notify.success('Hero slide updated successfully');
+      } else {
+        await dispatch(createHeroSlide(payload)).unwrap();
+        notify.success('Hero slide created successfully');
+      }
+      resetForm();
+    } catch (err) {
+      setError(String(err));
+      notify.error(String(err));
+    }
+  };
+
+  const confirmDelete = async () => {
+    if (!deleteId) return;
+    try {
+      await dispatch(removeHeroSlide(deleteId)).unwrap();
+      notify.success('Hero slide deleted successfully');
+      setDeleteId(null);
+    } catch (err) {
+      notify.error(String(err));
+    }
+  };
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-display font-bold text-gray-800 dark:text-white">Hero Slides</h1>
+        <p className="text-gray-500 text-sm mt-1">Manage the rotating homepage hero content.</p>
+      </div>
+
+      <div className="grid grid-cols-1 xl:grid-cols-[0.8fr_1.2fr] gap-6">
+        <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 p-5">
+          <h2 className="font-display font-bold text-gray-800 dark:text-white mb-5">{editing ? 'Edit Slide' : 'Add Slide'}</h2>
+          <div className="space-y-4">
+            <input value={form.image} onChange={(e) => setForm({ ...form, image: e.target.value })} placeholder="Image URL" className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-sm dark:text-white focus:outline-none focus:border-accent" />
+            <input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} placeholder="Title" className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-sm dark:text-white focus:outline-none focus:border-accent" />
+            <textarea value={form.subtitle} onChange={(e) => setForm({ ...form, subtitle: e.target.value })} placeholder="Subtitle" rows={4} className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-sm dark:text-white focus:outline-none focus:border-accent resize-none" />
+            <input type="number" value={form.sortOrder} onChange={(e) => setForm({ ...form, sortOrder: Number(e.target.value) })} placeholder="Sort order" className="w-full px-3 py-2.5 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-700 text-sm dark:text-white focus:outline-none focus:border-accent" />
+            {error && <p className="text-red-500 text-xs">{error}</p>}
+            <div className="flex gap-3">
+              <button type="button" onClick={submit} className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors">
+                {editing ? <Save size={15} /> : <Plus size={15} />} {editing ? 'Save Slide' : 'Add Slide'}
+              </button>
+              {editing && <button type="button" onClick={resetForm} className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-gray-700 dark:text-white px-4 py-2.5 text-sm font-medium transition-colors"><X size={15} /> Cancel</button>}
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 overflow-hidden">
+          <div className="p-5 border-b border-gray-100 dark:border-gray-700 relative">
+            <Search size={16} className="absolute left-9 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search slides..." className="w-full pl-11 pr-4 py-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-800 dark:text-white placeholder:text-gray-400 focus:outline-none focus:border-accent transition-colors text-sm" />
+          </div>
+          <div className="divide-y divide-gray-50 dark:divide-gray-700">
+            {filtered.map((slide) => (
+              <div key={slide.id} className="flex items-start justify-between gap-4 p-5">
+                <div className="flex items-start gap-4 min-w-0">
+                  <img src={slide.image} alt={slide.title} className="w-20 h-14 object-cover shrink-0 border border-gray-200 dark:border-gray-700" />
+                  <div className="min-w-0">
+                    <p className="font-medium text-gray-800 dark:text-white">{slide.title}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{slide.subtitle}</p>
+                    <p className="text-xs text-gray-400 mt-1 truncate">{slide.image}</p>
+                  </div>
+                </div>
+                <div className="flex gap-2 shrink-0">
+                  <button type="button" onClick={() => startEdit(slide)} className="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 dark:hover:bg-accent/20 transition-colors"><Pencil size={15} /></button>
+                  <button type="button" onClick={() => setDeleteId(slide.id)} className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"><Trash2 size={15} /></button>
+                </div>
+              </div>
+            ))}
+            {filtered.length === 0 && <div className="text-center py-12 text-gray-400">No slides found</div>}
+          </div>
+        </div>
+      </div>
+
+      <Modal open={!!deleteId} onClose={() => setDeleteId(null)} title="Delete Hero Slide" size="sm">
+        <p className="text-gray-500 dark:text-gray-400 text-sm mb-6">Delete this hero slide?</p>
+        <div className="flex gap-3">
+          <button onClick={confirmDelete} className="flex-1 bg-red-500 hover:bg-red-600 text-white py-2.5 text-sm font-medium transition-colors">Delete</button>
+          <button onClick={() => setDeleteId(null)} className="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 text-gray-700 dark:text-white py-2.5 text-sm font-medium transition-colors">Cancel</button>
+        </div>
+      </Modal>
+    </div>
+  );
+}

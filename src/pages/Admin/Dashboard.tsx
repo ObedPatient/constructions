@@ -7,7 +7,7 @@ import type { RootState } from '../../redux/store';
 import type { AppDispatch } from '../../redux/store';
 import { fetchMonthlyVisitors, fetchTotalVisitors } from '../../redux/slices/dashboardSlice';
 
-const COLORS = ['#F4A261', '#0D1B2A', '#1B263B', '#3D5A78'];
+const COLORS = ['#005AA7', '#1A1A1A', '#D9D9D9', '#FFFFFF'];
 
 export default function AdminDashboard() {
   const dispatch = useDispatch<AppDispatch>();
@@ -43,9 +43,9 @@ export default function AdminDashboard() {
 
   const STATS = [
     { label: 'Total Projects', value: projects.length, sub: `${completed} completed · ${ongoing} ongoing`, icon: FolderOpen, color: 'bg-blue-50 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400' },
-    { label: 'Project Photos', value: projectImages, sub: 'Uploaded to projects', icon: Images, color: 'bg-purple-50 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400' },
-    { label: 'Total Messages', value: messages.length, sub: `${unread} unread`, icon: MessageSquare, color: 'bg-orange-50 text-orange-600 dark:bg-orange-900/30 dark:text-orange-400' },
-    { label: 'Monthly Visitors', value: visitorLabel, sub: `${visitorGrowth > 0 ? '+' : ''}${visitorGrowth}% vs last month`, icon: TrendingUp, color: 'bg-green-50 text-green-600 dark:bg-green-900/30 dark:text-green-400' },
+    { label: 'Project Photos', value: projectImages, sub: 'Uploaded to projects', icon: Images, color: 'bg-secondary text-primary dark:bg-white/10 dark:text-white' },
+    { label: 'Total Messages', value: messages.length, sub: `${unread} unread`, icon: MessageSquare, color: 'bg-primary/5 text-primary dark:bg-white/10 dark:text-white' },
+    { label: 'Monthly Visitors', value: visitorLabel, sub: `${visitorGrowth > 0 ? '+' : ''}${visitorGrowth}% vs last month`, icon: TrendingUp, color: 'bg-secondary text-primary dark:bg-white/10 dark:text-white' },
   ];
 
   const recentMessages = messages.slice(0, 5);
@@ -84,21 +84,21 @@ export default function AdminDashboard() {
           className="xl:col-span-2 bg-white dark:bg-gray-800 p-6 shadow-sm border border-gray-100 dark:border-gray-700">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-display font-bold text-gray-800 dark:text-white">Monthly Visitors</h2>
-            <span className="text-xs text-green-500 bg-green-50 dark:bg-green-900/20 px-2 py-1">+12% YoY</span>
+            <span className="text-xs text-accent bg-accent/10 dark:bg-white/10 dark:text-white px-2 py-1">+12% YoY</span>
           </div>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={monthlyVisitors}>
               <defs>
                 <linearGradient id="colorVisitors" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#F4A261" stopOpacity={0.2} />
-                  <stop offset="95%" stopColor="#F4A261" stopOpacity={0} />
+                  <stop offset="5%" stopColor="#005AA7" stopOpacity={0.2} />
+                  <stop offset="95%" stopColor="#005AA7" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
               <XAxis dataKey="month" tick={{ fontSize: 12 }} />
               <YAxis tick={{ fontSize: 12 }} />
               <Tooltip contentStyle={{ border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.1)', borderRadius: '0' }} />
-              <Area type="monotone" dataKey="visitors" stroke="#F4A261" strokeWidth={2} fill="url(#colorVisitors)" />
+              <Area type="monotone" dataKey="visitors" stroke="#005AA7" strokeWidth={2} fill="url(#colorVisitors)" />
             </AreaChart>
           </ResponsiveContainer>
         </motion.div>
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
         <div className="divide-y divide-gray-50 dark:divide-gray-700">
           {recentMessages.map((msg) => (
             <div key={msg.id} className={`flex items-start gap-4 px-6 py-4 ${!msg.isRead ? 'bg-accent/5' : ''}`}>
-              <div className="w-9 h-9 bg-primary dark:bg-accent rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0">
+              <div className="w-9 h-9 bg-primary dark:bg-accent rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm shadow-black/10">
                 {msg.name[0]}
               </div>
               <div className="flex-1 min-w-0">

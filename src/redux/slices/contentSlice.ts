@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Milestone, Partner, Service, TeamMember } from '../../types';
-import { milestoneService, partnerService, serviceContentService, teamService } from '../../services/contentService';
+import type { HeroSlide, Milestone, Partner, Service, TeamMember } from '../../types';
+import { heroSlideService, milestoneService, partnerService, serviceContentService, teamService } from '../../services/contentService';
 
 interface ContentState {
   services: Service[];
   milestones: Milestone[];
   team: TeamMember[];
   partners: Partner[];
+  heroSlides: HeroSlide[];
   isLoading: boolean;
   error: string | null;
 }
@@ -16,6 +17,7 @@ const initialState: ContentState = {
   milestones: [],
   team: [],
   partners: [],
+  heroSlides: [],
   isLoading: false,
   error: null,
 };
@@ -139,6 +141,42 @@ export const fetchPartners = createAsyncThunk('content/fetchPartners', async (_,
   }
 });
 
+export const fetchHeroSlides = createAsyncThunk('content/fetchHeroSlides', async (_, { rejectWithValue }) => {
+  try {
+    const response = await heroSlideService.getAll();
+    return response.data;
+  } catch (err: any) {
+    return rejectWithValue(errorMessage(err, 'Failed to load hero slides'));
+  }
+});
+
+export const createHeroSlide = createAsyncThunk('content/createHeroSlide', async (data: Omit<HeroSlide, 'id'>, { rejectWithValue }) => {
+  try {
+    const response = await heroSlideService.create(data);
+    return response.data;
+  } catch (err: any) {
+    return rejectWithValue(errorMessage(err, 'Failed to create hero slide'));
+  }
+});
+
+export const saveHeroSlide = createAsyncThunk('content/saveHeroSlide', async ({ id, data }: { id: string; data: Partial<Omit<HeroSlide, 'id'>> }, { rejectWithValue }) => {
+  try {
+    const response = await heroSlideService.update(id, data);
+    return response.data;
+  } catch (err: any) {
+    return rejectWithValue(errorMessage(err, 'Failed to update hero slide'));
+  }
+});
+
+export const removeHeroSlide = createAsyncThunk('content/removeHeroSlide', async (id: string, { rejectWithValue }) => {
+  try {
+    await heroSlideService.delete(id);
+    return id;
+  } catch (err: any) {
+    return rejectWithValue(errorMessage(err, 'Failed to delete hero slide'));
+  }
+});
+
 export const createPartner = createAsyncThunk('content/createPartner', async (data: Omit<Partner, 'id'> | FormData, { rejectWithValue }) => {
   try {
     const response = await partnerService.create(data);
@@ -226,6 +264,18 @@ const contentSlice = createSlice({
       })
       .addCase(removePartner.fulfilled, (state, action: PayloadAction<string>) => {
         state.partners = state.partners.filter((partner) => partner.id !== action.payload);
+      })
+      .addCase(fetchHeroSlides.fulfilled, (state, action: PayloadAction<HeroSlide[]>) => {
+        state.heroSlides = action.payload;
+      })
+      .addCase(createHeroSlide.fulfilled, (state, action: PayloadAction<HeroSlide>) => {
+        upsertById(state.heroSlides, action.payload);
+      })
+      .addCase(saveHeroSlide.fulfilled, (state, action: PayloadAction<HeroSlide>) => {
+        upsertById(state.heroSlides, action.payload);
+      })
+      .addCase(removeHeroSlide.fulfilled, (state, action: PayloadAction<string>) => {
+        state.heroSlides = state.heroSlides.filter((slide) => slide.id !== action.payload);
       });
   },
 });

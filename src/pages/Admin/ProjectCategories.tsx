@@ -196,7 +196,7 @@ export default function AdminProjectCategories() {
               <button
                 type="button"
                 onClick={submitCategory}
-                className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-4 py-2.5 text-sm font-medium transition-colors"
+                className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors"
               >
                 {editing ? <Save size={15} /> : <Plus size={15} />}
                 {editing ? 'Save Category' : 'Add Category'}

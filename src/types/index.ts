@@ -71,6 +71,16 @@ export interface Testimonial {
   image?: string;
 }
 
+export interface HeroSlide {
+  id: string;
+  image: string;
+  title: string;
+  subtitle: string;
+  sortOrder?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export interface ContactMessage {
   id: string;
   name: string;

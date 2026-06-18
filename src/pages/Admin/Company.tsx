@@ -50,7 +50,7 @@ export default function AdminCompany() {
         </div>
         {isSaved && (
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}
-            className="flex items-center gap-2 text-green-600 bg-green-50 dark:bg-green-900/20 px-4 py-2 text-sm font-medium">
+            className="flex items-center gap-2 text-accent bg-accent/10 dark:bg-white/10 dark:text-white px-4 py-2 text-sm font-medium">
             <CheckCircle2 size={16} /> Saved successfully
           </motion.div>
         )}
@@ -111,7 +111,7 @@ export default function AdminCompany() {
         </div>
 
         <div className="flex justify-end">
-          <button type="submit" disabled={isLoading} className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-6 py-3 font-medium text-sm transition-colors disabled:opacity-60">
+          <button type="submit" disabled={isLoading} className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-6 py-3 font-medium text-sm transition-colors disabled:opacity-60">
             <Save size={16} /> {isLoading ? 'Saving...' : 'Save Changes'}
           </button>
         </div>

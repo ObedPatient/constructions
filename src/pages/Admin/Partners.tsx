@@ -236,7 +236,7 @@ export default function AdminPartners() {
             {error && <p className="text-red-500 text-xs">{error}</p>}
 
             <div className="flex gap-3">
-              <button type="button" onClick={submit} className="flex items-center gap-2 bg-accent hover:bg-orange-600 text-white px-4 py-2.5 text-sm font-medium transition-colors">
+              <button type="button" onClick={submit} className="flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-4 py-2.5 text-sm font-medium transition-colors">
                 {editing ? <Save size={15} /> : <Plus size={15} />} {editing ? 'Save Partner' : 'Add Partner'}
               </button>
               {editing && (

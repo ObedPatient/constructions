@@ -6,11 +6,11 @@
 
 @layer base {
   :root {
-    --color-primary: #0D1B2A;
-    --color-secondary: #1B263B;
-    --color-accent: #F4A261;
-    --color-bg: #F8F9FA;
-    --color-text: #1A1A1A;
+    --color-primary: #005aa7;
+    --color-secondary: #d9d9d9;
+    --color-accent: #005aa7;
+    --color-bg: #ffffff;
+    --color-text: #1a1a1a;
   }
 
   * {
@@ -22,11 +22,18 @@
   }
 
   body {
-    @apply bg-[#F8F9FA] text-[#1A1A1A] font-body antialiased;
+    @apply bg-white text-[#1a1a1a] font-body antialiased;
+    background-image:
+      radial-gradient(circle at top left, rgba(0, 90, 167, 0.08), transparent 32%),
+      radial-gradient(circle at right top, rgba(217, 217, 217, 0.35), transparent 28%);
+    background-attachment: fixed;
   }
 
   .dark body {
-    @apply bg-[#0D1B2A] text-gray-100;
+    @apply bg-[#1a1a1a] text-gray-100;
+    background-image:
+      radial-gradient(circle at top left, rgba(0, 90, 167, 0.18), transparent 28%),
+      radial-gradient(circle at right top, rgba(217, 217, 217, 0.08), transparent 24%);
   }
 
   ::selection {
@@ -44,19 +51,19 @@
   }
 
   .btn-primary {
-    @apply bg-accent hover:bg-accent-600 text-white font-semibold px-8 py-3 rounded-none transition-all duration-300 inline-flex items-center gap-2 tracking-wider uppercase text-sm;
+    @apply bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-3 rounded-md transition-all duration-300 inline-flex items-center gap-2 tracking-wider uppercase text-sm shadow-lg shadow-accent/20;
   }
 
   .btn-outline {
-    @apply border-2 border-white hover:bg-white hover:text-primary text-white font-semibold px-8 py-3 rounded-none transition-all duration-300 inline-flex items-center gap-2 tracking-wider uppercase text-sm;
+    @apply border-2 border-white hover:bg-white hover:text-primary text-white font-semibold px-8 py-3 rounded-md transition-all duration-300 inline-flex items-center gap-2 tracking-wider uppercase text-sm;
   }
 
   .btn-dark {
-    @apply bg-primary hover:bg-secondary text-white font-semibold px-8 py-3 rounded-none transition-all duration-300 inline-flex items-center gap-2 tracking-wider uppercase text-sm;
+    @apply bg-primary hover:bg-secondary text-white font-semibold px-8 py-3 rounded-md transition-all duration-300 inline-flex items-center gap-2 tracking-wider uppercase text-sm shadow-lg shadow-black/10;
   }
 
   .card-glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-none;
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-md;
   }
 
   .section-label {
@@ -72,7 +79,15 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-accent to-orange-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent via-secondary to-primary bg-clip-text text-transparent;
+  }
+
+  .brand-surface {
+    @apply bg-white/90 dark:bg-primary/80 border border-gray-200/70 dark:border-white/10 backdrop-blur;
+  }
+
+  .brand-panel {
+    @apply bg-white dark:bg-secondary border border-gray-100 dark:border-white/10 shadow-[0_18px_45px_rgba(17,17,17,0.08)];
   }
 
   /* Scrollbar */
@@ -134,7 +149,7 @@
 
 /* Swiper overrides */
 .swiper-pagination-bullet-active {
-  background: #F4A261 !important;
+  background: #005aa7 !important;
 }
 
 /* Masonry */
@@ -151,9 +166,9 @@
   font-family: Inter, system-ui, sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
-  box-shadow: 0 18px 45px rgba(13, 27, 42, 0.18);
+  box-shadow: 0 18px 45px rgba(17, 17, 17, 0.16);
 }
 
 .app-toast-progress {
-  background: #F4A261;
+  background: #005aa7;
 }

@@ -1,5 +1,5 @@
 {
-  "name": "real-construction-api",
+  "name": "builders-max-api",
   "version": "0.1.0",
   "main": "dist/server.js",
   "scripts": {

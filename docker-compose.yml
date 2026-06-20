@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: real-construction-postgres
+    container_name: builders-max-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: real

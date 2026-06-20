@@ -29,7 +29,7 @@ router.get('/', async (_req, res, next) => {
 router.post('/', requireAuth, upload.single('image'), async (req, res, next) => {
   try {
     const file = req.file as any;
-    const uploadedImage = file ? await uploadBuffer(file, 'real-construction/team') : undefined;
+    const uploadedImage = file ? await uploadBuffer(file, 'builders-max/team') : undefined;
     const data = teamMemberSchema.parse({
       ...req.body,
       image: uploadedImage || req.body.image,
@@ -56,7 +56,7 @@ router.put('/:id', requireAuth, upload.single('image'), async (req, res, next) =
   try {
     const id = String(req.params.id);
     const file = req.file as any;
-    const uploadedImage = file ? await uploadBuffer(file, 'real-construction/team') : undefined;
+    const uploadedImage = file ? await uploadBuffer(file, 'builders-max/team') : undefined;
     const data = teamMemberSchema.partial().parse({
       ...req.body,
       image: uploadedImage || req.body.image,

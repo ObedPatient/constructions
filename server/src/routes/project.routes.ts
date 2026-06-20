@@ -85,7 +85,7 @@ router.post('/', requireAuth, upload.array('images', 10), async (req, res, next)
     await ensureCategoryExists(data.category);
     const files = (req.files as any[]) ?? [];
     const uploadedImages = files.length
-      ? await Promise.all(files.map((file) => uploadBuffer(file, 'real-construction/projects')))
+      ? await Promise.all(files.map((file) => uploadBuffer(file, 'builders-max/projects')))
       : [];
     const images = uploadedImages.length ? uploadedImages : data.images ?? [];
     const coverImage = data.coverImage || images[0];
@@ -120,7 +120,7 @@ router.put('/:id', requireAuth, upload.array('images', 10), async (req, res, nex
     await ensureCategoryExists(data.category);
     const files = (req.files as any[]) ?? [];
     const uploadedImages = files.length
-      ? await Promise.all(files.map((file) => uploadBuffer(file, 'real-construction/projects')))
+      ? await Promise.all(files.map((file) => uploadBuffer(file, 'builders-max/projects')))
       : [];
     const existing = await prisma.project.findUniqueOrThrow({ where: { id } });
     const keptImages = data.images ?? existing.images;
@@ -162,7 +162,7 @@ router.post('/:id/images', requireAuth, upload.array('files', 10), async (req, r
   try {
     const id = String(req.params.id);
     const files = req.files as any[];
-    const urls = await Promise.all(files.map((file) => uploadBuffer(file, 'real-construction/projects')));
+    const urls = await Promise.all(files.map((file) => uploadBuffer(file, 'builders-max/projects')));
     const project = await prisma.project.findUniqueOrThrow({ where: { id } });
     await prisma.project.update({
       where: { id },

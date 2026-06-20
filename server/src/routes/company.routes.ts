@@ -71,7 +71,7 @@ router.put('/', requireAuth, async (req, res, next) => {
 router.post('/logo', requireAuth, upload.single('file'), async (req, res, next) => {
   try {
     if (!req.file) throw new AppError(400, 'Image file is required');
-    const url = await uploadBuffer(req.file, 'real-construction/company');
+    const url = await uploadBuffer(req.file, 'builders-max/company');
     const profile = await prisma.companyProfile.update({ where: { id: 'default' }, data: { logo: url } });
     res.json({ url: profile.logo });
   } catch (error) {
@@ -82,7 +82,7 @@ router.post('/logo', requireAuth, upload.single('file'), async (req, res, next) 
 router.post('/hero-image', requireAuth, upload.single('file'), async (req, res, next) => {
   try {
     if (!req.file) throw new AppError(400, 'Image file is required');
-    const url = await uploadBuffer(req.file, 'real-construction/company');
+    const url = await uploadBuffer(req.file, 'builders-max/company');
     const profile = await prisma.companyProfile.update({ where: { id: 'default' }, data: { heroImage: url } });
     res.json({ url: profile.heroImage });
   } catch (error) {

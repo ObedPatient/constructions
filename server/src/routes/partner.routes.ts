@@ -36,7 +36,7 @@ router.post('/', requireAuth, upload.single('logo'), async (req, res, next) => {
     ensurePartnerModel();
     const data = partnerSchema.parse(req.body);
     const file = req.file as any;
-    const uploadedLogo = file ? await uploadBuffer(file, 'real-construction/partners') : undefined;
+    const uploadedLogo = file ? await uploadBuffer(file, 'builders-max/partners') : undefined;
     const partner = await prisma.partner.create({
       data: {
         ...data,
@@ -57,7 +57,7 @@ router.put('/:id', requireAuth, upload.single('logo'), async (req, res, next) =>
     const id = String(req.params.id);
     const data = partnerSchema.partial().parse(req.body);
     const file = req.file as any;
-    const uploadedLogo = file ? await uploadBuffer(file, 'real-construction/partners') : undefined;
+    const uploadedLogo = file ? await uploadBuffer(file, 'builders-max/partners') : undefined;
     const partner = await prisma.partner.update({
       where: { id },
       data: {

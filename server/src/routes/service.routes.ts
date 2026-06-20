@@ -36,7 +36,7 @@ router.post('/', requireAuth, upload.single('image'), async (req, res, next) => 
   try {
     const data = serviceSchema.parse(normalizeBody(req.body));
     const file = req.file as any;
-    const uploadedImage = file ? await uploadBuffer(file, 'real-construction/services') : undefined;
+    const uploadedImage = file ? await uploadBuffer(file, 'builders-max/services') : undefined;
     const service = await prisma.service.create({
       data: {
         ...data,
@@ -56,7 +56,7 @@ router.put('/:id', requireAuth, upload.single('image'), async (req, res, next) =
     const id = String(req.params.id);
     const data = serviceSchema.partial().parse(normalizeBody(req.body));
     const file = req.file as any;
-    const uploadedImage = file ? await uploadBuffer(file, 'real-construction/services') : undefined;
+    const uploadedImage = file ? await uploadBuffer(file, 'builders-max/services') : undefined;
     const service = await prisma.service.update({
       where: { id },
       data: {

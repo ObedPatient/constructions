@@ -59,10 +59,7 @@ export default function AdminLoginPage() {
           <h2 className="font-display text-2xl font-bold text-white mb-2">Sign In</h2>
           <p className="text-white/50 text-sm mb-8">Enter your credentials to access the admin panel.</p>
 
-          {/* Demo credentials hint */}
-          <div className="bg-accent/10 border border-accent/30 px-4 py-3 mb-6 text-xs text-accent">
-            Demo: admin@real.rw / admin123
-          </div>
+         
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <div>

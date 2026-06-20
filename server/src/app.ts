@@ -17,7 +17,32 @@ import analyticsRoutes from './routes/analytics.routes.js';
 
 export const app = express();
 
-app.use(cors({ origin: env.frontendUrl, credentials: true }));
+// ✅ Updated CORS configuration
+const allowedOrigins = [
+  env.frontendUrl || 'http://localhost:5173',
+  'https://buildersmax-frontend.onrender.com',
+  'https://buildersmaxconstructions-ltd.onrender.com',
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or curl)
+    if (!origin) {
+      return callback(null, true);
+    }
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log(`❌ CORS blocked: ${origin}`);
+      callback(new Error(`CORS error: Origin ${origin} not allowed`));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json({ limit: '1mb' }));
 app.use(trackVisitor);
 

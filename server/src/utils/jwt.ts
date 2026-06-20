@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import type { StringValue } from 'ms';
+import ms from 'ms';
 import { env } from '../config/env.js';
 
 export interface JwtPayload {
@@ -9,7 +9,7 @@ export interface JwtPayload {
 }
 
 export function signToken(payload: JwtPayload) {
-  return jwt.sign(payload, env.jwtSecret, { expiresIn: env.jwtExpiresIn as StringValue });
+  return jwt.sign(payload, env.jwtSecret, { expiresIn: env.jwtExpiresIn });
 }
 
 export function verifyToken(token: string) {

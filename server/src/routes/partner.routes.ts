@@ -1,13 +1,10 @@
-import { Router} from 'express';
-import multer from 'multer';
+import { Router, Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { prisma } from '../config/prisma.js';
 import { requireAuth } from '../middleware/auth.js';
 import { upload } from '../middleware/upload.js';
 import { uploadBuffer } from '../utils/upload.js';
 import { AppError } from '../utils/errors.js';
-
-type MulterFile = Express.Multer.File;
 
 const router = Router();
 
@@ -38,7 +35,7 @@ router.post('/', requireAuth, upload.single('logo'), async (req, res, next) => {
   try {
     ensurePartnerModel();
     const data = partnerSchema.parse(req.body);
-    const file = req.file as MulterFile | undefined;
+    const file = req.file as any;
     const uploadedLogo = file ? await uploadBuffer(file, 'real-construction/partners') : undefined;
     const partner = await prisma.partner.create({
       data: {
@@ -59,7 +56,7 @@ router.put('/:id', requireAuth, upload.single('logo'), async (req, res, next) =>
     ensurePartnerModel();
     const id = String(req.params.id);
     const data = partnerSchema.partial().parse(req.body);
-    const file = req.file as MulterFile | undefined;
+    const file = req.file as any;
     const uploadedLogo = file ? await uploadBuffer(file, 'real-construction/partners') : undefined;
     const partner = await prisma.partner.update({
       where: { id },

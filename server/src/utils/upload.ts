@@ -13,7 +13,7 @@ function isCloudinaryAuthError(error: unknown): error is CloudinaryError {
   );
 }
 
-export async function uploadBuffer(file: Express.Multer.File, folder: string) {
+export async function uploadBuffer(file: any, folder: string) {
   if (!isCloudinaryConfigured()) {
     throw new AppError(503, 'Cloudinary is not configured');
   }

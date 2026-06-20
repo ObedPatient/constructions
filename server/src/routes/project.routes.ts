@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import multer from 'multer';
 import slugify from 'slugify';
 import { z } from 'zod';
 import { prisma } from '../config/prisma.js';
@@ -7,8 +6,6 @@ import { requireAuth } from '../middleware/auth.js';
 import { upload } from '../middleware/upload.js';
 import { AppError } from '../utils/errors.js';
 import { uploadBuffer } from '../utils/upload.js';
-
-type MulterFile = Express.Multer.File;
 
 const router = Router();
 
@@ -86,7 +83,7 @@ router.post('/', requireAuth, upload.array('images', 10), async (req, res, next)
   try {
     const data = projectSchema.parse(normalizeBody(req.body));
     await ensureCategoryExists(data.category);
-    const files = (req.files as MulterFile[]) ?? [];
+    const files = (req.files as any[]) ?? [];
     const uploadedImages = files.length
       ? await Promise.all(files.map((file) => uploadBuffer(file, 'real-construction/projects')))
       : [];
@@ -121,7 +118,7 @@ router.put('/:id', requireAuth, upload.array('images', 10), async (req, res, nex
     const id = String(req.params.id);
     const data = projectSchema.partial().parse(normalizeBody(req.body));
     await ensureCategoryExists(data.category);
-    const files = (req.files as MulterFile[]) ?? [];
+    const files = (req.files as any[]) ?? [];
     const uploadedImages = files.length
       ? await Promise.all(files.map((file) => uploadBuffer(file, 'real-construction/projects')))
       : [];
@@ -164,7 +161,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
 router.post('/:id/images', requireAuth, upload.array('files', 10), async (req, res, next) => {
   try {
     const id = String(req.params.id);
-    const files = req.files as MulterFile[];
+    const files = req.files as any[];
     const urls = await Promise.all(files.map((file) => uploadBuffer(file, 'real-construction/projects')));
     const project = await prisma.project.findUniqueOrThrow({ where: { id } });
     await prisma.project.update({

@@ -1,12 +1,9 @@
 import { Router } from 'express';
-import multer from 'multer';
 import { z } from 'zod';
 import { prisma } from '../config/prisma.js';
 import { requireAuth } from '../middleware/auth.js';
 import { upload } from '../middleware/upload.js';
 import { uploadBuffer } from '../utils/upload.js';
-
-type MulterFile = Express.Multer.File;
 
 const router = Router();
 
@@ -38,7 +35,7 @@ router.get('/', async (_req, res, next) => {
 router.post('/', requireAuth, upload.single('image'), async (req, res, next) => {
   try {
     const data = serviceSchema.parse(normalizeBody(req.body));
-    const file = req.file as MulterFile | undefined;
+    const file = req.file as any;
     const uploadedImage = file ? await uploadBuffer(file, 'real-construction/services') : undefined;
     const service = await prisma.service.create({
       data: {
@@ -58,7 +55,7 @@ router.put('/:id', requireAuth, upload.single('image'), async (req, res, next) =
   try {
     const id = String(req.params.id);
     const data = serviceSchema.partial().parse(normalizeBody(req.body));
-    const file = req.file as MulterFile | undefined;
+    const file = req.file as any;
     const uploadedImage = file ? await uploadBuffer(file, 'real-construction/services') : undefined;
     const service = await prisma.service.update({
       where: { id },

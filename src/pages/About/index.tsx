@@ -47,7 +47,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
         <div className="relative container-custom px-4 sm:px-6 lg:px-8 pb-14 w-full">
           <span className="text-accent text-xs tracking-[0.3em] uppercase font-semibold block mb-2">Our Story</span>
-          <h1 className="font-display text-5xl md:text-6xl font-bold text-white">About REAL Construction</h1>
+          <h1 className="font-display text-5xl md:text-6xl font-bold text-white">About Builders max construction ltd</h1>
         </div>
       </div>
 

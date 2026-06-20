@@ -49,7 +49,7 @@ VALUES
 
 INSERT INTO "Milestone" ("id", "year", "title", "description", "sortOrder", "updatedAt")
 VALUES
-  ('milestone_2005', '2005', 'Founded', 'REAL Construction established with a team of 12 engineers and a bold vision.', 1, CURRENT_TIMESTAMP),
+  ('milestone_2005', '2005', 'Founded', 'Builders max construction ltd established with a team of 12 engineers and a bold vision.', 1, CURRENT_TIMESTAMP),
   ('milestone_2008', '2008', 'First Major Contract', 'Awarded the Kigali Northern Bypass infrastructure contract worth 15M RWF.', 2, CURRENT_TIMESTAMP),
   ('milestone_2012', '2012', 'Regional Expansion', 'Extended operations to Uganda and Tanzania, growing to 200 employees.', 3, CURRENT_TIMESTAMP),
   ('milestone_2016', '2016', 'ISO Certification', 'Achieved ISO 9001:2015 certification for quality management systems.', 4, CURRENT_TIMESTAMP),

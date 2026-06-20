@@ -25,7 +25,7 @@ export const env = {
     secure: process.env.SMTP_SECURE === 'true',
     user: optionalEnv('SMTP_USER'),
     pass: optionalEnv('SMTP_PASS'),
-    from: optionalEnv('MAIL_FROM') ?? 'REAL Construction <no-reply@real.rw>',
+    from: optionalEnv('MAIL_FROM') ?? 'Builders max construction ltd <no-reply@real.rw>',
     contactTo: optionalEnv('CONTACT_TO') ?? 'info@real.rw',
   },
   appCurrency: optionalEnv('APP_CURRENCY') ?? 'USD',

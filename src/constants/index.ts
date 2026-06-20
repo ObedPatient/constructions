@@ -16,10 +16,10 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Contact', href: '/contact' },
 ];
 export const COMPANY_PROFILE: CompanyProfile = {
-  companyName: 'REAL Construction',
+  companyName: 'Builders max construction ltd',
   tagline: 'Building Rwanda\'s Future, One Structure at a Time',
   description:
-    'REAL Construction is Rwanda\'s premier construction company, delivering excellence in engineering, architecture, and infrastructure development since 2005. We build landmarks that define skylines and communities that shape lives.',
+    'Builders max construction ltd is Rwanda\'s premier construction company, delivering excellence in engineering, architecture, and infrastructure development since 2005. We build landmarks that define skylines and communities that shape lives.',
   mission:
     'To deliver world-class construction solutions that exceed client expectations through innovation, quality craftsmanship, and sustainable practices.',
   vision:
@@ -187,7 +187,7 @@ export const TESTIMONIALS = [
     company: 'RwandaInvest Group',
     role: 'CEO',
     content:
-      'REAL Construction delivered our tower on time and within budget. The quality of their work is unmatched — they transformed our vision into a landmark that we\'re extremely proud of.',
+      'Builders max construction ltd delivered our tower on time and within budget. The quality of their work is unmatched — they transformed our vision into a landmark that we\'re extremely proud of.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80',
   },
@@ -197,7 +197,7 @@ export const TESTIMONIALS = [
     company: 'Housing Authority of Rwanda',
     role: 'Director',
     content:
-      'The Kacyiru Residential Estate project exceeded every expectation. REAL Construction\'s attention to detail, sustainability focus, and community engagement made them the ideal partner.',
+      'The Kacyiru Residential Estate project exceeded every expectation. Builders max construction ltd\'s attention to detail, sustainability focus, and community engagement made them the ideal partner.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80',
   },
@@ -207,7 +207,7 @@ export const TESTIMONIALS = [
     company: 'Rwanda Infrastructure Authority',
     role: 'Project Director',
     content:
-      'The Nyabarongo Bridge project was extraordinarily complex. REAL Construction navigated every challenge with exceptional skill and delivered a world-class structure.',
+      'The Nyabarongo Bridge project was extraordinarily complex. Builders max construction ltd navigated every challenge with exceptional skill and delivered a world-class structure.',
     rating: 5,
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80',
   },

@@ -277,7 +277,7 @@ export default function ContactPage() {
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title={`REAL Construction location - ${address}`}
+                  title={`Builders max construction ltd location - ${address}`}
                 />
 
                 <div className="absolute top-3 right-3 z-10">

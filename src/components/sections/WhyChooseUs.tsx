@@ -68,7 +68,7 @@ export default function WhyChooseUs() {
               title="The Standard Everyone Else Aspires To"
             />
             <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-              When you work with REAL Construction, you're not just hiring a contractor — you're partnering 
+              When you work with Builders max construction ltd, you're not just hiring a contractor — you're partnering 
               with East Africa's most trusted builder. Our track record speaks for itself: 340+ completed 
               projects, zero major safety incidents in the last 8 years, and a client retention rate of 78%.
             </p>

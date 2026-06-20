@@ -56,11 +56,11 @@ export default function HomePage() {
               transition={{ duration: 0.7 }}
             >
               <SectionHeader
-                label="About REAL Construction"
+                label="About Builders max construction ltd"
                 title="20 Years of Building Rwanda's Greatest Landmarks"
               />
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-5">
-                Founded in 2005, REAL Construction has grown from a local contractor into East Africa's most
+                Founded in 2005, Builders max construction ltd has grown from a local contractor into East Africa's most
                 respected construction company. We've built over 340 landmark projects — from soaring commercial
                 towers to critical infrastructure that powers communities.
               </p>
@@ -92,7 +92,7 @@ export default function HomePage() {
               <div className="relative">
                 <img
                   src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
-                  alt="REAL Construction team at work"
+                  alt="Builders max construction ltd team at work"
                   className="w-full h-[500px] object-cover"
                   loading="lazy"
                 />

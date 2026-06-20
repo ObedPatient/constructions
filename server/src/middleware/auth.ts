@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { prisma } from '../config/prisma.js';
 import { AppError } from '../utils/errors.js';
 import { verifyToken } from '../utils/jwt.js';

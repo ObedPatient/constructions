@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import multer from 'multer';
 import { z } from 'zod';
 import { prisma } from '../config/prisma.js';
 import { requireAuth } from '../middleware/auth.js';
@@ -43,6 +44,7 @@ router.post('/', requireAuth, upload.single('logo'), async (req, res, next) => {
         logo: uploadedLogo || data.logo || null,
         website: data.website || null,
         sortOrder: data.sortOrder ?? 0,
+
       },
     });
     res.status(201).json(partner);

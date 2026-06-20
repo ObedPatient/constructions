@@ -15,7 +15,6 @@ export const NAV_ITEMS: NavItem[] = [
   { label: 'Projects', href: '/projects' },
   { label: 'Contact', href: '/contact' },
 ];
-
 export const COMPANY_PROFILE: CompanyProfile = {
   companyName: 'REAL Construction',
   tagline: 'Building Rwanda\'s Future, One Structure at a Time',
@@ -213,3 +212,4 @@ export const TESTIMONIALS = [
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&q=80',
   },
 ];
+

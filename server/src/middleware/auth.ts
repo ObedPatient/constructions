@@ -13,7 +13,8 @@ export interface AuthedRequest extends Request {
 
 export async function requireAuth(req: AuthedRequest, _res: Response, next: NextFunction) {
   try {
-    const header = req.headers.authorization;
+    // ✅ FIX: Use type assertion to access headers
+    const header = (req as Request).headers.authorization;
     const token = header?.startsWith('Bearer ') ? header.slice(7) : null;
 
     if (!token) {
